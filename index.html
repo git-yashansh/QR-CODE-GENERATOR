@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QRXpress - Professional QR Code Generator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- GIF Background -->
+    <div class="gif-background">
+        <img src="bg.gif" alt="Background Animation" id="bg-gif" class="background-gif">
+        <div class="video-overlay"></div>
+    </div>
+
+    <!-- Animated Background -->
+    <div class="animated-background">
+        <div class="grid-overlay"></div>
+        <div class="floating-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <div class="logo-icon">
+                    <i class="fas fa-qrcode"></i>
+                </div>
+                <span class="logo-text">QRXpress</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#generator" class="nav-link">Generator</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#about" class="nav-link">About</a>
+            </div>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge animate-bounce-in">
+                    <span class="badge-text">✨ Professional QR Generator</span>
+                </div>
+                <h1 class="hero-title animate-slide-up">
+                    Create <span>Stunning</span><br>
+                    QR Codes in <span class="typing-text">Seconds...</span>
+                </h1>
+                <p class="hero-description animate-fade-in">
+                    Generate beautiful, customizable QR codes with advanced styling options. 
+                    Perfect for businesses, events, and personal use.
+                </p>
+                <div class="hero-buttons animate-slide-up-delay">
+                    <button class="btn-primary pulse-animation" onclick="scrollToSection('generator')">
+                        <span>Start Creating</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                    <!-- <button class="btn-secondary hover-glow">
+                        <i class="fas fa-play"></i>
+                        <span>Watch Demo</span>
+                    </button> -->
+                </div>
+                <div class="hero-stats animate-fade-in-delay">
+                    <div class="stat counter-animation">
+                        <div class="stat-number" data-count="10000">0</div>
+                        <div class="stat-label">QR Codes Generated</div>
+                    </div>
+                    <div class="stat counter-animation">
+                        <div class="stat-number" data-count="99.9">0</div>
+                        <div class="stat-label">Uptime</div>
+                    </div>
+                    <div class="stat counter-animation">
+                        <div class="stat-number" data-count="5">0</div>
+                        <div class="stat-label">User Rating</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual animate-slide-right">
+                <div class="qr-showcase">
+                    <div class="qr-card qr-card-1 floating-card">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://example.com" alt="Sample QR" class="qr-sample">
+                        <div class="qr-glow"></div>
+                    </div>
+                    <div class="qr-card qr-card-2 floating-card">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=Hello World!" alt="Sample QR" class="qr-sample">
+                        <div class="qr-glow"></div>
+                    </div>
+                    <div class="qr-card qr-card-3 floating-card">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=QRXpress" alt="Sample QR" class="qr-sample">
+                        <div class="qr-glow"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QR Generator Section -->
+    <section id="generator" class="generator-section">
+        <div class="section-container">
+            <div class="section-header animate-on-scroll">
+                <h2 class="section-title">QR Code Generator</h2>
+                <p class="section-subtitle">Create your perfect QR code instantly</p>
+            </div>
+            
+            <div class="generator-layout">
+                <!-- Controls Panel -->
+                <div class="controls-panel animate-slide-left">
+                    <div class="control-card hover-lift">
+                        <h3 class="control-title">Content</h3>
+                        <div class="input-group">
+                            <label for="qr-input">Enter your text or URL..</label>
+                            <textarea 
+                                id="qr-input" 
+                                placeholder="https://example.com or any text..."
+                                rows="3"
+                                oninput="generateQRCode()"
+                                class="input-glow"
+                            ></textarea>
+                        </div>
+                    </div>
+
+                    <div class="control-card hover-lift">
+                        <h3 class="control-title">Appearance</h3>
+                        
+                        <div class="control-row">
+                            <div class="control-group">
+                                <label>Foreground Color</label>
+                                <div class="color-input-group">
+                                    <input type="color" id="fg-color" value="#000000" onchange="generateQRCode()" class="color-picker-glow">
+                                    <div class="color-presets">
+                                        <button class="color-preset active hover-scale" onclick="setColor('fg', '#000000')" style="background: #000000"></button>
+                                        <button class="color-preset hover-scale" onclick="setColor('fg', '#ff0000')" style="background: #ff0000"></button>
+                                        <button class="color-preset hover-scale" onclick="setColor('fg', '#00ff00')" style="background: #00ff00"></button>
+                                        <button class="color-preset hover-scale" onclick="setColor('fg', '#0000ff')" style="background: #0000ff"></button>
+                                        <button class="color-preset hover-scale" onclick="setColor('fg', '#ff00ff')" style="background: #ff00ff"></button>
+                                        <button class="color-preset hover-scale" onclick="setColor('fg', '#ffff00')" style="background: #ffff00"></button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="control-group">
+                                <label>Background Color</label>
+                                <div class="color-input-group">
+                                    <input type="color" id="bg-color" value="#ffffff" onchange="generateQRCode()" class="color-picker-glow">
+                                    <div class="color-presets">
+                                        <button class="color-preset active hover-scale" onclick="setColor('bg', '#ffffff')" style="background: #ffffff; border: 1px solid #333"></button>
+                                        <button class="color-preset hover-scale" onclick="setColor('bg', '#000000')" style="background: #000000"></button>
+                                        <button class="color-preset hover-scale" onclick="setColor('bg', '#f0f0f0')" style="background: #f0f0f0"></button>
+                                        <button class="color-preset hover-scale" onclick="setColor('bg', '#e0e0e0')" style="background: #e0e0e0"></button>
+                                        <button class="color-preset hover-scale" onclick="setColor('bg', '#ffcccc')" style="background: #ffcccc"></button>
+                                        <button class="color-preset hover-scale" onclick="setColor('bg', '#ccffcc')" style="background: #ccffcc"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label>Size: <span id="size-value">300</span>px</label>
+                            <input type="range" id="size-slider" min="200" max="600" value="300" class="slider glow-slider" oninput="updateSize(); generateQRCode()">
+                        </div>
+                    </div>
+
+                    <button class="generate-btn pulse-button" onclick="generateQRCode()">
+                        <i class="fas fa-magic"></i>
+                        <span>Generate QR Code</span>
+                    </button>
+                </div>
+
+                <!-- Preview Panel -->
+                <div class="preview-panel animate-slide-right">
+                    <div class="preview-card hover-lift">
+                        <div class="preview-header">
+                            <h3>Preview</h3>
+                            <div class="preview-actions">
+                                <button class="action-btn hover-bounce" onclick="downloadQR()" id="download-btn">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                                <button class="action-btn hover-bounce" onclick="copyQR()" id="copy-btn">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="qr-preview" id="qr-preview">
+                            <img id="qr-image" src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=Hello World!" alt="QR Code" class="qr-generated qr-zoom-animation">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="section-container">
+            <div class="section-header animate-on-scroll">
+                <h2 class="section-title">Powerful Features</h2>
+                <p class="section-subtitle">Everything you need to create professional QR codes</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card hover-lift animate-on-scroll">
+                    <div class="feature-icon icon-bounce">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Custom Colors</h3>
+                    <p>Choose any color combination for your QR codes. Make them match your brand perfectly.</p>
+                </div>
+                
+                <div class="feature-card hover-lift animate-on-scroll">
+                    <div class="feature-icon icon-bounce">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <h3>High Quality Export</h3>
+                    <p>Download your QR codes in high-resolution PNG format, perfect for print and digital use.</p>
+                </div>
+                
+                <div class="feature-card hover-lift animate-on-scroll">
+                    <div class="feature-icon icon-bounce">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile Optimized</h3>
+                    <p>Works flawlessly on all devices. Create QR codes anywhere, anytime.</p>
+                </div>
+                
+                <div class="feature-card hover-lift animate-on-scroll">
+                    <div class="feature-icon icon-bounce">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Error Correction</h3>
+                    <p>Advanced error correction ensures your QR codes work even if partially damaged.</p>
+                </div>
+                
+                <div class="feature-card hover-lift animate-on-scroll">
+                    <div class="feature-icon icon-bounce">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Lightning Fast</h3>
+                    <p>Generate QR codes instantly with our optimized algorithms. No waiting required.</p>
+                </div>
+                
+                <div class="feature-card hover-lift animate-on-scroll">
+                    <div class="feature-icon icon-bounce">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>Privacy First</h3>
+                    <p>All processing happens in your browser. Your data never leaves your device.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="section-container">
+            <div class="about-content">
+                <div class="about-text animate-slide-left">
+                    <h2 class="section-title">About QRXpress</h2>
+                    <p>QRXpress is the most advanced QR code generator available. Built with modern web technologies, it offers unparalleled customization options while maintaining simplicity and ease of use.</p>
+                    <p>Whether you're a business owner, marketer, or individual user, QRXpress provides all the tools you need to create professional-quality QR codes that stand out.</p>
+                    <div class="about-features">
+                        <div class="about-feature animate-check">
+                            <i class="fas fa-check"></i>
+                            <span>100% Free to Use</span>
+                        </div>
+                        <div class="about-feature animate-check">
+                            <i class="fas fa-check"></i>
+                            <span>No Registration Required</span>
+                        </div>
+                        <div class="about-feature animate-check">
+                            <i class="fas fa-check"></i>
+                            <span>Unlimited QR Codes</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual animate-slide-right">
+                    <div class="qr-showcase-large">
+                        <h3 class="qr-showcase-title">QR Code Gallery</h3>
+                        <div class="qr-showcase-grid">
+                            <div class="mini-qr">
+                                <div class="mini-qr-pattern"></div>
+                            </div>
+                            <div class="mini-qr">
+                                <div class="mini-qr-pattern"></div>
+                            </div>
+                            <div class="mini-qr">
+                                <div class="mini-qr-pattern"></div>
+                            </div>
+                            <div class="mini-qr">
+                                <div class="mini-qr-pattern"></div>
+                            </div>
+                        </div>
+                        <p class="qr-showcase-text">Create stunning QR codes with endless possibilities</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-logo animate-glow">
+                    <div class="logo-icon">
+                        <i class="fas fa-qrcode"></i>
+                    </div>
+                    <span class="logo-text">QRXpress</span>
+                </div>
+                <p class="footer-text">Creating the future of QR codes, one pixel at a time.</p>
+            </div>
+            <div class="footer-bottom">
+                <p>Made with <span class="heart-beat">❤️</span> by <span class="developer-name">Kumar Yashansh</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
